@@ -39,9 +39,12 @@ def FindQvart(x, y):
     elif(x > 0 and y < 0):
         print('Точка размещена в четверти 4')
     else:
-        if x == 0:
+        if(x == 0 and y != 0):
             print('Точка размещена на оси Y')
-        else:
+        elif(x != 0 and y == 0):
             print('Точка размещена на оси X')
+        else:
+            print('Точка размещена на пересечении осей координат')
 
 FindQvart(a, b)
+
