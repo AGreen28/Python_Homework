@@ -5,20 +5,19 @@
 '''
 
 with open('polinom1.txt') as p1:
+    print(*p1)
+with open('polinom2.txt') as p2:
+    print(*p2)
+
+with open('polinom1.txt') as p1:
     p1 = p1.read().split(' + ')
 with open('polinom2.txt') as p2:
     p2 = p2.read().split(' + ')
 
-print(p1)
-print(p2)
-
-p1 =  [x.replace('*', '') for x in p1]
-p2 =  [x.replace('*', '') for x in p2]
-
 def outx(pol):
     pol2 = []
     for i in pol:
-        pol2.append(i.split('x'))
+        pol2.append(i.split('*'))
     pol2 = [tuple(x) for x in pol2]
     return pol2
 
@@ -64,30 +63,27 @@ for i in range(0, len(p33)):
 
 for i in range(0, len(p33)):
     p33[i].reverse()
-
-for i in range(0, len(p33)):
     for j in range(0, len(p33[i])):
         if j % 2 ==0:
             if p33[i][j].isdigit():
                 p33[i][j] = int(p33[i][j])
+                p33[i][j] = str(p33[i][j])
             else:
                 st = p33[i][j]
                 st = st.split()
                 p33[i][j] = int(st[0]) + int(st[1])
-
-for i in range(0, len(p33)):
-    for j in range(0, len(p33[i])):
-        p33[i][j] = str(p33[i][j])
+                p33[i][j] = str(p33[i][j])
 
 for i in range(0, len(p33)-1):
     for j in range(0, len(p33[i])-1):
-        p33[i][0] = p33[i][0] + '*x'
+        p33[i][0] = p33[i][0] + '*'
 
 for i in range(0, len(p33)):
     for j in range(0, len(p33[i])):
         p33[i] = ''.join(p33[i])
 
 p33 = ' + '.join(map(str, p33))
+print(p33)
 
 sumfile = open("sumofpolinoms.txt", "w")
 sumfile.write(p33)
